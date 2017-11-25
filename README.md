@@ -14,4 +14,10 @@ This application quickly and easily tracks attendance at each non-profit board m
 
 ## Configuration
 
+## Support
+
+## License
+This project is licensed under the GNU General Public License v3.0.  For details, see the [LICENSE file](https://github.com/KatyWittwer/attendtrak/blob/master/LICENSE)
+
+
 
