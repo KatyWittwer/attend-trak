@@ -1,4 +1,6 @@
 package org.launchcode.attendtrac.Models.data;
 
-public class MeetingDao {
+import org.springframework.data.repository.CrudRepository;
+
+public class MeetingDao extends CrudRepository<Meeting, Integer>;
 }
