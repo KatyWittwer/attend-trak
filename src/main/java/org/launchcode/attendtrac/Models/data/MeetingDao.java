@@ -1,6 +1,12 @@
 package org.launchcode.attendtrac.Models.data;
 
+import org.launchcode.attendtrac.Models.Meeting;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public class MeetingDao extends CrudRepository<Meeting, Integer>;
+import javax.transaction.Transactional;
+
+@Repository
+@Transactional
+public interface MeetingDao extends CrudRepository<Meeting, Integer>{
 }
