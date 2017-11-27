@@ -1,7 +1,5 @@
 package org.launchcode.attendtrac.Models;
 
-import com.sun.org.glassfish.gmbal.NameValue;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,16 +16,16 @@ public class Meeting {
     private int id;
 
     @NotNull
-    @Size(min = 1, max = 15, message = "Meeting title must not be empty")
-    private String title;
-
-    @NotNull
     @Size(min = 1, max = 10, message = "Date must not be empty")
     private Date date;
 
+    @NotNull
+    @Size(min = 1, max = 15, message = "Meeting type must not be empty")
+    private String type;
+
     public Meeting(int id, String title, Date date) {
         this.id = id;
-        this.title = title;
+        this.type = type;
         this.date = date;
     }
 
@@ -38,11 +36,11 @@ public class Meeting {
     }
 
     public String getTitle() {
-        return title;
+        return type;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.type = title;
     }
 
     public Date getDate() {
