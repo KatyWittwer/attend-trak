@@ -23,7 +23,7 @@ public class Meeting {
     @Size(min = 1, max = 15, message = "Meeting type must not be empty")
     private String type;
 
-    public Meeting(int id, String title, Date date) {
+    public Meeting(int id, String type, Date date) {
         this.id = id;
         this.type = type;
         this.date = date;
@@ -35,12 +35,12 @@ public class Meeting {
         return id;
     }
 
-    public String getTitle() {
+    public String getType() {
         return type;
     }
 
-    public void setTitle(String title) {
-        this.type = title;
+    public void setType (String type) {
+        this.type = type;
     }
 
     public Date getDate() {
