@@ -36,6 +36,8 @@ public class Meeting {
 
     public Meeting(){}
 
+    public void addItem(Attendee item) {attendees.add(item);}
+
     public int getId() {
         return id;
     }
