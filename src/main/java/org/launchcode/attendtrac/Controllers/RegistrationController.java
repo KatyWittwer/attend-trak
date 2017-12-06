@@ -18,13 +18,11 @@ public class UserController {
     @Autowired
     private UserDao userDao;
 
+
     @RequestMapping(value="add", method = RequestMethod.GET)
     public String displayAddUserForm(Model model) {
-        model.addAttribute("title","Register");
         model.addAttribute("user", new User());
-
-        model.addAttribute("users", userDao.findAll());
-
+        model.addAttribute("title","Register");
         return "user/add";
     }
 
@@ -46,7 +44,7 @@ public class UserController {
             return "user/index";
         }
 
-        return "user/add";
+        return "user/index";
 
     }
 }
