@@ -19,7 +19,7 @@ public class Attendee {
     @Size(min = 3, max = 15)
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "attendees")
     private List<Meeting> meetings;
 
     public Attendee(String name) {
