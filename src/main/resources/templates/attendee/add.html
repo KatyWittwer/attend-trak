@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments :: head"></head>
 
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+    <form method="post" th:object="${attendee}">
+        <label>Name (first last): </label>
+        <input type="text" th:field="*{name}" />
+        <span th:errors="*{name}" class="error"></span>
+        <label>Role:</label>
+        <input type="text" th:field="*{role}" />
+        <span th:errors="*{role}" class="error"></span>
+        <input type="submit" value="Add Attendee" />
+    </form>
+<br />
+<br />
+
+<table class="table">
+    <th>Attendee Name</th><th>Role</th>
+    <tr th:each="attendee : ${attendees}">
+        <td th:text="${attendee.name}"></td>
+        <td th:text="${attendee.role}"></td>
+    </tr>
+</table>
 </body>
 </html>
