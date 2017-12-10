@@ -19,6 +19,12 @@ public class Attendee {
     @Size(min = 3, max = 15)
     private String name;
 
+    @ManyToMany
+    private List<Meeting> meetings;
+
+    public Attendee(String name) {
+        this.name = name;
+    }
 
     public Attendee() {}
 

@@ -15,16 +15,16 @@
         <label>Role:</label>
         <input type="text" th:field="*{role}" />
         <span th:errors="*{role}" class="error"></span>
-        <input type="submit" value="Add Board Member" />
+        <input type="submit" value="Add Attendee" />
     </form>
 <br />
 <br />
 
 <table class="table">
     <th>Attendee Name</th><th>Role</th>
-    <tr th:each="BoardMember : ${BoardMembes}">
-        <td th:text="${boardmember.name}"></td>
-        <td th:text="${boardmember.role}"></td>
+    <tr th:each="attendee : ${attendees}">
+        <td th:text="${attendee.name}"></td>
+        <td th:text="${attendee.role}"></td>
     </tr>
 </table>
 </body>
