@@ -21,14 +21,14 @@ public class Meeting {
     @ManyToMany
     private List<Attendee> attendees;
 
-    public Meeting(int id, String type, String date) {
+    public Meeting(int id, String date) {
         this.id = id;
         this.date = date;
     }
 
     public Meeting(){}
 
-    public void addItem(Attendee item) {attendees.add(item);}
+    public void addName(Attendee name) {attendees.add(name);}
 
     public int getId() {
         return id;
