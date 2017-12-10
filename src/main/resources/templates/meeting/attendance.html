@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" th:object="${form}" action="/meeting/attendance">
+
+<table class="table">
+    <tr>
+        <td><th>Present</th></td>
+    </tr>
+    <tr th:each="attendee : ${attendees}">
+        <td th:text="${attendee.name}"></td>
+        <td><input type = "checkbox" id = "present"></td>
+    </tr>
+</table>
+
+    <input type="hidden" name="meetingId" th:value="*{meeting.id}" />
