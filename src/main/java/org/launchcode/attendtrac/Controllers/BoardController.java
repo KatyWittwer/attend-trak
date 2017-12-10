@@ -13,26 +13,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("attendees")
+@RequestMapping("attendee")
 public class AttendeeController {
 
     @Autowired
     private AttendeeDao attendeeDao;
 
-    @RequestMapping(value = "")
-    public String index(Model model) {
-
-        model.addAttribute("title", "Attendees");
-        model.addAttribute("attendees", attendeeDao.findAll());
-
-        return "attendee/index";
-    }
-
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddAttendeeForm(Model model) {
-        model.addAttribute("title", "Add Attendee");
+        model.addAttribute("title", "Manage Board Member List");
         model.addAttribute(new Attendee());
-        return "attendee/add";
+
+        model.addAttribute("board", attendeeDao.findAll());
+
+        return "board/add";
 
     }
     @RequestMapping(value = "add", method = RequestMethod.POST)
@@ -40,12 +34,12 @@ public class AttendeeController {
                                         Errors errors, Model model) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Attendee");
-            return "attendee/add";
+            model.addAttribute("title", "Add New Board Member");
+            return "boardMember/add";
         }
 
         attendeeDao.save(newAttendee);
-        return "attendee/index";
+        return "attendee/add";
 
     }
 
