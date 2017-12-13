@@ -6,8 +6,6 @@ import org.launchcode.attendtrac.Models.Meeting;
 import javax.validation.constraints.NotNull;
 
 public class AddMeetingAttendee {
-
-
     @NotNull
     private int meetingId;
 
@@ -24,7 +22,6 @@ public class AddMeetingAttendee {
     public AddMeetingAttendee(Iterable<Attendee> attendees, Meeting meeting) {
         this.attendees = attendees;
         this.meeting = meeting;
-
     }
 
     public int getMeetingId() {
@@ -35,11 +32,23 @@ public class AddMeetingAttendee {
         this.meetingId = meetingId;
     }
 
-    public int getAttendeeId() {
-        return attendeeId;
-    }
 
-    public void setAttendeeId(int attendeeId) {
-        this.attendeeId = attendeeId;
+    public void setAttendees(Iterable<Attendee> attendees) { this.attendees = attendees; }
+
+    public Meeting getMeeting() {
+        return meeting;
+
     }
-}
+        public void setMeeting (Meeting meeting){
+            this.meeting = meeting;
+        }
+
+
+        public int getAttendeeId () {
+            return attendeeId;
+        }
+
+        public void setAttendeeId ( int attendeeId){
+            this.attendeeId = attendeeId;
+        }
+    }

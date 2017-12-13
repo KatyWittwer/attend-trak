@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.Iterator;
 
 
 @Controller
@@ -48,39 +49,52 @@ public class MeetingController {
         }
 
         meetingDao.save(meeting);
-        return "redirect:attendance/" + meeting.getId();
+        return "redirect:add-attendance/" + meeting.getId();
 
     }
 
-    @RequestMapping(value = "attendance/{meetingId}", method = RequestMethod.GET)
+    @RequestMapping(value = "add-attendance/{meetingId}", method = RequestMethod.GET)
     public String addMeetingAttendee(Model model, @PathVariable int meetingId) {
 
         Meeting meeting = meetingDao.findOne(meetingId);
+        meeting.addAttendees(attendeeDao.findAll());
+
+        model.addAttribute("attendees", attendeeDao.findAll());
 
         AddMeetingAttendee form = new AddMeetingAttendee(
-                attendeeDao.findAll(), meeting);
+        attendeeDao.findAll(), meeting);
 
-        model.addAttribute("title", "Record Attendees");
+        model.addAttribute("title", "Record Meeting Attendees");
+        model.addAttribute(meeting);
         model.addAttribute("form", form);
-        return "meeting/attendance";
+        return "meeting/add-attendance";
     }
 
-    @RequestMapping(value = "attendance", method = RequestMethod.POST)
-    public String addMeetingAttendee(Model model, @ModelAttribute @Valid AddMeetingAttendee form, Errors errors){
+    @RequestMapping(value = "add-attendance", method = RequestMethod.POST)
+    public String addMeetingAttendee(Model model, @ModelAttribute AddMeetingAttendee form, Errors errors) {
+
 
         if (errors.hasErrors()) {
             model.addAttribute("form", form);
-            return "menu/attendance";
+            return "meeting/add-attendance";
         }
 
         Attendee theAttendee = attendeeDao.findOne(form.getAttendeeId());
         Meeting theMeeting = meetingDao.findOne(form.getMeetingId());
-        theMeeting.addMeetingAttendee(theAttendee);
+
+        //Iterable<Attendee> attendees = form.getAttendees();
+
+        //Iterable<Attendee> attendees = meeting.getAttendees();
+        //for (Iterator<Attendee> i = attendees.iterator(); i.hasNext();) {
+         //   Attendee attendee = i.next();
+        //}
+
+        theMeeting.addAttendees((Iterable<Attendee>) theMeeting);
 
         meetingDao.save(theMeeting);
         return "redirect:/meeting/index";
+    }
 
-}
     @RequestMapping(value = "view/{meetingId}", method = RequestMethod.GET)
     public String viewMeeting(Model model, @PathVariable int meetingId) {
 
@@ -92,4 +106,5 @@ public class MeetingController {
 
         return "meeting/{view}";
     }
+
 }

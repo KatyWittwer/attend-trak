@@ -13,7 +13,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("user")
-public class UserController {
+public class RegistrationController {
 
     @Autowired
     private UserDao userDao;

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" th:object="${meeting}" action="/meeting/add-attendance">
+
+    <h1>Meeting <span th:text="${#dates.format(form.meeting.date, 'dd/MM/yyyy')}"></span></h1>
+    <table class="table">
+    <th>Name</th><th>In Person</th><th>By Phone</th><th>Excused</th><th>Absent</th>
+
+    <tr th:each="attendee : ${form.meeting.attendees}">
+        <td th:text="${attendee.name}"></td>
+        <td><input type="checkbox" th:value="${attendee.present}" /></td>
+        <td><input type="checkbox" th:value="${attendee.absent}" /></td>
+        <td><input type="checkbox" th:value="${attendee.excused}" /></td>
+        <td><input type="checkbox" th:value="${attendee.viaphone}" /></td>
+
+    </tr>
+    </table>
+    <input type="submit" value="Submit" />
+</form>
+
+</body>
+</html>

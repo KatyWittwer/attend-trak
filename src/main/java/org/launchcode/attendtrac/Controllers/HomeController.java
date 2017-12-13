@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RequestMapping("")
 @Controller
-public class MainController {
+public class HomeController {
 
     @Autowired UserDao userDao;
 

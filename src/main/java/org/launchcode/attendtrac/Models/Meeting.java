@@ -1,11 +1,12 @@
 package org.launchcode.attendtrac.Models;
-
-import javafx.util.converter.LocalDateStringConverter;
 import org.springframework.format.annotation.DateTimeFormat;
+import sun.security.x509.AttributeNameEnumeration;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Entity
@@ -16,6 +17,7 @@ public class Meeting {
     private int id;
 
     @NotNull
+    @DateTimeFormat(pattern = "mm/DD/yyy")
     private String date;
 
     @ManyToMany
@@ -28,7 +30,16 @@ public class Meeting {
 
     public Meeting(){}
 
-    public void addName(Attendee name) {attendees.add(name);}
+    public void addAttendance(Attendee attendance) {
+        attendees.add(attendance);
+    }
+
+    public void addAttendees(Iterable<Attendee> attendees) {
+        for (Iterator<Attendee> i = attendees.iterator(); i.hasNext();) {
+            Attendee attendee = i.next();
+            addAttendance(attendee);
+        }
+    }
 
     public int getId() {
         return id;
@@ -42,7 +53,9 @@ public class Meeting {
         this.date = date;
     }
 
-
+    public List<Attendee> getAttendees() {
+        return attendees;
+    }
 }
 
 

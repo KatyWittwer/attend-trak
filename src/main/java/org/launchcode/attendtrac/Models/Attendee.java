@@ -16,9 +16,23 @@ public class Attendee {
     private int id;
 
     @NotNull
-    @Size(min = 3, max = 15)
+    @Size(min = 1, max = 30)
     private String name;
 
+    private boolean present;
+
+    private boolean absent;
+
+    private boolean excused;
+
+    private boolean viaphone;
+
+
+    @NotNull
+    @Size(min = 1, max = 20)
+    private String role;
+
+    //other side of many to many relationship with meetings
     @ManyToMany(mappedBy = "attendees")
     private List<Meeting> meetings;
 
@@ -26,7 +40,10 @@ public class Attendee {
         this.name = name;
     }
 
-    public Attendee() {}
+    public Attendee() {
+    }
+
+
 
     public int getId() {
         return id;
@@ -38,5 +55,45 @@ public class Attendee {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+
+    public boolean isAbsent() {
+        return absent;
+    }
+
+    public void setAbsent(boolean absent) {
+        this.absent = absent;
+    }
+    public boolean isPresent() {
+        return present;
+    }
+
+    public void setPresent(boolean present) {
+        this.present = present;
+    }
+
+    public boolean isExcused() {
+        return excused;
+    }
+
+    public void setExcused(boolean excused) {
+        this.excused = excused;
+    }
+
+    public boolean isViaphone() {
+        return viaphone;
+    }
+
+    public void setViaphone(boolean viaphone) {
+        this.viaphone = viaphone;
     }
 }
