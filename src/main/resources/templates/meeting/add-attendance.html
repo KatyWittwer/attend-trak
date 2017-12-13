@@ -9,7 +9,7 @@
 
 <form method="post" th:object="${meeting}" action="/meeting/add-attendance">
 
-    <h1>Meeting <span th:text="${#dates.format(form.meeting.date, 'dd/MM/yyyy')}"></span></h1>
+    <h1>Meeting <span th:text="${form.meeting.date}"></span></h1>
     <table class="table">
     <th>Name</th><th>In Person</th><th>By Phone</th><th>Excused</th><th>Absent</th>
 
