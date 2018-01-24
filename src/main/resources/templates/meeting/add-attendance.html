@@ -7,22 +7,21 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="post" th:object="${meeting}" action="/meeting/add-attendance">
+<form method="post" th:object="${form}" action="/meeting/add-attendance">
 
     <h1>Meeting <span th:text="${form.meeting.date}"></span></h1>
-    <table class="table">
-    <th>Name</th><th>In Person</th><th>By Phone</th><th>Excused</th><th>Absent</th>
 
-    <tr th:each="attendee : ${form.meeting.attendees}">
-        <td th:text="${attendee.name}"></td>
-        <td><input type="checkbox" th:value="${attendee.present}" /></td>
-        <td><input type="checkbox" th:value="${attendee.absent}" /></td>
-        <td><input type="checkbox" th:value="${attendee.excused}" /></td>
-        <td><input type="checkbox" th:value="${attendee.viaphone}" /></td>
+        <div class="form-group">
+            <label th:for="attendeeId">Attendees</label>
+            <select name="attendeeId">
+                <option th:each="attendee : ${attendees}"
+                        th:text="${attendee.name}"
+                        th:value="${attendee.id}"></option>
+            </select>
+        </div>
+    <input type="hidden" name="meetingId" th:value="*{meeting.id}" />
 
-    </tr>
-    </table>
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Add" />
 </form>
 
 </body>
