@@ -19,15 +19,6 @@ public class Attendee {
     @Size(min = 1, max = 30)
     private String name;
 
-    private boolean present;
-
-    private boolean absent;
-
-    private boolean excused;
-
-    private boolean viaphone;
-
-
     @NotNull
     @Size(min = 1, max = 20)
     private String role;
@@ -36,18 +27,14 @@ public class Attendee {
     @ManyToMany(mappedBy = "attendees")
     private List<Meeting> meetings;
 
-    public Attendee(String name) {
+    public Attendee(String name, String role) {
         this.name = name;
+        this.role = role;
     }
 
     public Attendee() {
     }
 
-
-
-    public int getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -64,36 +51,5 @@ public class Attendee {
     public void setRole(String role) {
         this.role = role;
     }
-
-
-    public boolean isAbsent() {
-        return absent;
-    }
-
-    public void setAbsent(boolean absent) {
-        this.absent = absent;
-    }
-    public boolean isPresent() {
-        return present;
-    }
-
-    public void setPresent(boolean present) {
-        this.present = present;
-    }
-
-    public boolean isExcused() {
-        return excused;
-    }
-
-    public void setExcused(boolean excused) {
-        this.excused = excused;
-    }
-
-    public boolean isViaphone() {
-        return viaphone;
-    }
-
-    public void setViaphone(boolean viaphone) {
-        this.viaphone = viaphone;
-    }
 }
+
