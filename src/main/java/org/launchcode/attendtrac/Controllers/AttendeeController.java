@@ -47,7 +47,7 @@ public class AttendeeController {
         //save the attendee
         attendeeDao.save(newAttendee);
         //refresh the page and allow for more entries
-        return "redirect/";
+        return "redirect:/attendee/add";
 
     }
 

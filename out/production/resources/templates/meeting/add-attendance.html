@@ -7,23 +7,28 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="post" th:object="${meeting}" action="/meeting/add-attendance">
+<form method="post" th:object="${form}" action="/meeting/add-attendance">
 
-    <h1>Meeting <span th:text="${#dates.format(form.meeting.date, 'dd/MM/yyyy')}"></span></h1>
-    <table class="table">
-    <th>Name</th><th>In Person</th><th>By Phone</th><th>Excused</th><th>Absent</th>
+    <div class="form-group">
+            <label th:for="attendeeId">Attendees Present</label>
+            <select name="attendeeId">
+                <option th:each="attendee : *{attendees}"
+                        th:text="${attendee.name}"
+                        th:value="${attendee.id}">
+                </option>
+            </select>
+        </div>
+    <input type="hidden" name="meetingId" th:value="*{meeting.id}" />
 
-    <tr th:each="attendee : ${form.meeting.attendees}">
-        <td th:text="${attendee.name}"></td>
-        <td><input type="checkbox" th:value="${attendee.present}" /></td>
-        <td><input type="checkbox" th:value="${attendee.absent}" /></td>
-        <td><input type="checkbox" th:value="${attendee.excused}" /></td>
-        <td><input type="checkbox" th:value="${attendee.viaphone}" /></td>
-
-    </tr>
-    </table>
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Add" />
 </form>
+<table class="table">
+    <th>First</th><th>Role</th>
+    <tr th:each="attendee : ${attendees}">
+        <td th:text="${attendee.name}"></td>
+        <td th:text="${attendee.role}"></td>
+    </tr>
+</table>
 
 </body>
 </html>

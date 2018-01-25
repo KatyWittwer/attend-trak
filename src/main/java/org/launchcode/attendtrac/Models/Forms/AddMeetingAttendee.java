@@ -10,7 +10,13 @@ public class AddMeetingAttendee {
     private int meetingId;
 
     @NotNull
+    private int meetingDate;
+
+    @NotNull
     private int attendeeId;
+
+    @NotNull
+    private int attendeeName;
 
     private Iterable<Attendee> attendees;
 
@@ -32,23 +38,35 @@ public class AddMeetingAttendee {
         this.meetingId = meetingId;
     }
 
+    public int getAttendeeId() {
+        return attendeeId;
+    }
 
-    public void setAttendees(Iterable<Attendee> attendees) { this.attendees = attendees; }
+    public void setAttendeeId(int attendeeId) {
+        this.attendeeId = attendeeId;
+    }
+
+    public Iterable<Attendee> getAttendees() {
+        return attendees;
+    }
 
     public Meeting getMeeting() {
         return meeting;
-
     }
-        public void setMeeting (Meeting meeting){
-            this.meeting = meeting;
-        }
 
-
-        public int getAttendeeId () {
-            return attendeeId;
-        }
-
-        public void setAttendeeId ( int attendeeId){
-            this.attendeeId = attendeeId;
-        }
+    public int getMeetingDate() {
+        return meetingDate;
     }
+
+    public void setMeetingDate(int meetingDate) {
+        this.meetingDate = meetingDate;
+    }
+
+    public int getAttendeeName() {
+        return attendeeName;
+    }
+
+    public void setAttendeeName(int attendeeName) {
+        this.attendeeName = attendeeName;
+    }
+}

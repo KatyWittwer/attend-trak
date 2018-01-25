@@ -17,32 +17,30 @@ public class Meeting {
     private int id;
 
     @NotNull
-    @DateTimeFormat(pattern = "mm/DD/yyy")
+    @DateTimeFormat(pattern = "mm/dd/yyyy")
     private String date;
+
+    @NotNull
+    private String type;
 
     @ManyToMany
     private List<Attendee> attendees;
 
-    public Meeting(int id, String date) {
-        this.id = id;
-        this.date = date;
-    }
-
     public Meeting(){}
 
-    public void addAttendance(Attendee attendance) {
-        attendees.add(attendance);
-    }
+    public Meeting(int id, String date, String type) {
+        this.id = id;
+        this.date = date;
+        this.type = type;
 
-    public void addAttendees(Iterable<Attendee> attendees) {
-        for (Iterator<Attendee> i = attendees.iterator(); i.hasNext();) {
-            Attendee attendee = i.next();
-            addAttendance(attendee);
-        }
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDate() {
@@ -53,9 +51,19 @@ public class Meeting {
         this.date = date;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public List<Attendee> getAttendees() {
         return attendees;
     }
-}
 
+    public void addAttendee(Attendee theAttendee) {
+        attendees.add(theAttendee);}
 
+    }
