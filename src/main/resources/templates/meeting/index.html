@@ -9,15 +9,13 @@
 <nav th:replace="fragments :: navigation"></nav>
 
 <table class="table">
-    <th>Meeting Date</th>
-    <th>Attendance Percentage Rate</th>
+    <th>Meeting Dates</th>
+    </table>
     <tr th:each="meeting : ${meetings}">
         <a th:href="'/meeting/add-attendance/' + ${meeting.id}" th:text="${meeting.date}"></a>
     </tr>
-</table>
-
 <p th:unless="${meetings} and ${meetings.size()}">No meetings to display</p>
 
 </body>
-<p><a href="meeting/add">Add new meeting record</a></p>
-<p><a href="attendee/add">Manage master attendee list</a></p></html>
+
+</html>
